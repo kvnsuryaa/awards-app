@@ -10,7 +10,6 @@
       <div class="mr-auto h3 mt-auto mb-auto" v-b-toggle.sidebar-backdrop>
         <b-icon icon="filter-left" variant="dark"></b-icon>
       </div>
-      {{ nextPageLoaded }}
       <div class="ml-auto h3 mt-auto mb-auto" v-b-modal.modal-1>
         <b-icon icon="filter" variant="dark"></b-icon>
       </div>
@@ -225,11 +224,15 @@ export default {
   },
   methods: {
     async getAwards() {
-      const params = qs.stringify(this.filter_payload);
-      await this.$store.dispatch("awards/GET_AWARDS", params);
+      try {
+        const params = qs.stringify(this.filter_payload);
+        await this.$store.dispatch("awards/GET_AWARDS", params);
 
-      this.current_filter.poin = this.filter_payload.poin;
-      this.current_filter.type = this.filter_payload.type;
+        this.current_filter.poin = this.filter_payload.poin;
+        this.current_filter.type = this.filter_payload.type;
+      } catch (err) {
+        console.log(err);
+      }
     },
     toggleAll(checked) {
       this.filter_payload.type = checked ? this.types.slice() : [];
