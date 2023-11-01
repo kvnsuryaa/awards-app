@@ -23,14 +23,20 @@ npm run serve
 
 ### Backend
 
-create file .env based on .env.example
-
 ```
 cd awards-be
 ```
 
 ```
 npm install
+```
+
+```
+import file schema.sql to postgreSQL
+```
+
+```
+create file .env based on .env.example
 ```
 
 ```
